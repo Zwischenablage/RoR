@@ -3,3 +3,4 @@ manifests/
 node_modules/
 tmp/
 *.lock
+apk_analyzer/log/development.log

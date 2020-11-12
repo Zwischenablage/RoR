@@ -3,25 +3,25 @@
 one:
   filename: MyString
   package: MyString
-  hasActivity: 
+  hasActivity: false
   hasRO: 
-  numOfReceviers: 
-  numOfServices: 
-  numOfProviders: 
-  createdPermissions: 
-  usedPermissions: 
-  bootCompleted: 
-  persistent: 
+  numOfServices: 1
+  numOfReceivers: 1
+  numOfProviders: 1
+  createdPermissions: 1
+  usedPermissions: 1
+  bootCompleted: 1
+  persistent: 1
 
 two:
   filename: MyString
   package: MyString
-  hasActivity: 
+  hasActivity: false
   hasRO: 
-  numOfReceviers: 
-  numOfServices: 
-  numOfProviders: 
-  createdPermissions: 
-  usedPermissions: 
-  bootCompleted: 
-  persistent: 
+  numOfServices: 1
+  numOfReceivers: 1
+  numOfProviders: 1
+  createdPermissions: 1
+  usedPermissions: 1
+  bootCompleted: 1
+  persistent: 1

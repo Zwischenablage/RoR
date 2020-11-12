@@ -1,6 +1,7 @@
 
-manifests/
-node_modules/
-tmp/
-*.lock
+apk_analyzer/manifests/
+apk_analyzer/node_modules/
+apk_analyzer/tmp/
+apk_analyzer/*.lock
 apk_analyzer/log/development.log
+apk_analyzer/test/

@@ -2,33 +2,43 @@
 
 
 
-<table>
-  <tr>
-    <th>Package</th>
-    <th>isApplication</th>
-    <th>Activities</th>
-    <th>RO</th>
-    <th>Services</th>
-    <th>Receivers</th>
-    <th>Providers</th>
-    <th>used permissions</th>
-    <th>created permissions</th>
-    <th>RECEIVE_BOOT_COMPLETED</th>
-    <th>Persistent</th>
-  </tr>
-   <% @apps.each do |app|%>
-   <tr>
-     <td><%= app.package %></td>
-     <td><%= app.hasApplication %></td>
-     <td><%= app.hasActivity %></td>
-     <td><%= app.hasRO %></td>
-     <td><%= app.numOfServices %></td>
-     <td><%= app.numOfReceivers %></td>
-     <td><%= app.numOfProviders %></td>
-     <td><%= app.usedPermissions %></td>
-     <td><%= app.createdPermissions %></td>
-     <td><%= app.bootCompleted %></td>
-     <td><%= app.persistent %></td>
-   </tr>
-   <% end %>
-</table>
+<div class="container table-container">
+  <div class="row">
+    <div class="col-md-8">
+        <table id="static-table" class="display">
+          <thead>
+          <tr>
+            <th>Package</th>
+            <th>isApplication</th>
+            <th>Activities</th>
+            <th>RO</th>
+            <th>Services</th>
+            <th>Receivers</th>
+            <th>Providers</th>
+            <th>used permissions</th>
+            <th>created permissions</th>
+            <th>RECEIVE_BOOT_COMPLETED</th>
+            <th>Persistent</th>
+          </tr>
+          </thead>
+          <tbody>
+           <% @apps.each do |app|%>
+           <tr>
+             <td><%= app.package %></td>
+             <td><%= app.hasApplication %></td>
+             <td><%= app.hasActivity %></td>
+             <td><%= app.hasRO %></td>
+             <td><%= app.numOfServices %></td>
+             <td><%= app.numOfReceivers %></td>
+             <td><%= app.numOfProviders %></td>
+             <td><%= app.usedPermissions %></td>
+             <td><%= app.createdPermissions %></td>
+             <td><%= app.bootCompleted %></td>
+             <td><%= app.persistent %></td>
+           </tr>
+           <% end %>
+           </tbody>
+        </table>
+    </div>
+  </div>
+</div>

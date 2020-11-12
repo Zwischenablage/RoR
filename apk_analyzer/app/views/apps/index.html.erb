@@ -1,9 +1,9 @@
 <h1>All the apps</h1>
 
 
-
-<table>
-  <tr>
+<div class="">
+<table id="example" class="table table-striped table-bordered" >
+  <thead>
     <th>Package</th>
     <th>isApplication</th>
     <th>Activities</th>
@@ -15,7 +15,8 @@
     <th>created permissions</th>
     <th>RECEIVE_BOOT_COMPLETED</th>
     <th>Persistent</th>
-  </tr>
+  </thead>
+  <tbody>
    <% @apps.each do |app|%>
    <tr>
      <td><%= app.package %></td>
@@ -31,4 +32,12 @@
      <td><%= app.persistent %></td>
    </tr>
    <% end %>
+   </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+</script>

@@ -4,7 +4,7 @@ class CreateApps < ActiveRecord::Migration[6.0]
       t.string :filename
       t.string :package
       t.boolean :hasActivity
-      t.bolean :hasRO
+      t.boolean :hasRO
       t.integer :numOfServices
       t.integer :numOfReceivers
       t.integer :numOfProviders

@@ -1,0 +1,39 @@
+<h1>All the apps</h1>
+
+<h2> apps </h2>
+<% App.all.each do |app| %>
+  <%= app.package %>
+<% end %>
+<hr>
+<%= content_tag :table, role: :datatable, data: { url: overview_index_path(format: :json)} do %>
+<table>
+  <tr>
+    <th>Package</th>
+    <th>isApplication</th>
+    <th>Activities</th>
+    <th>RO</th>
+    <th>Services</th>
+    <th>Receivers</th>
+    <th>Providers</th>
+    <th>used permissions</th>
+    <th>created permissions</th>
+    <th>RECEIVE_BOOT_COMPLETED</th>
+    <th>Persistent</th>
+  </tr>
+   <% @apps.each do |app|%>
+   <tr>
+     <td><%= app[1] %></td>
+     <td><%= app[2] %></td>
+     <td><%= app[3] %></td>
+     <td><%= app[4] %></td>
+     <td><%= app[5] %></td>
+     <td><%= app[6] %></td>
+     <td><%= app[7] %></td>
+     <td><%= app[8] %></td>
+     <td><%= app[9] %></td>
+     <td><%= app[10] %></td>
+     <td><%= app[11] %></td>
+   </tr>
+   <% end %>
+</table>
+<% end %>

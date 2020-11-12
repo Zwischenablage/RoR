@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  package: MyString
+  hasActivity: 
+  hasRO: 
+  numOfReceviers: 
+  numOfServices: 
+  numOfProviders: 
+  createdPermissions: 
+  usedPermissions: 
+  bootCompleted: 
+  persistent: 
+
+two:
+  filename: MyString
+  package: MyString
+  hasActivity: 
+  hasRO: 
+  numOfReceviers: 
+  numOfServices: 
+  numOfProviders: 
+  createdPermissions: 
+  usedPermissions: 
+  bootCompleted: 
+  persistent: 

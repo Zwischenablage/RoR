@@ -23,7 +23,7 @@ class AppsController < ApplicationController
       persistent = doc.xpath("//application[@android:persistent='true']").size
 
       App.new("filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
-        "numOfReceviers": numReceivers, "numOfServices": numServices, "numOfProviders": numProviders,
+        "numOfReceivers": numReceivers, "numOfServices": numServices, "numOfProviders": numProviders,
         "createdPermissions": createdPermissions, "usedPermissions": usedPermissions,
         "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp).save
     end

@@ -2,7 +2,7 @@
 
 class OverviewController < ApplicationController
   def index
-    files = Dir.glob("#{Rails.root}/manifests/*")
+    files = Dir.glob("#{Rails.root}/manifests/hcp3/*")
     @apps = Array.new
 
     App.delete_all

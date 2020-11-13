@@ -1,6 +1,6 @@
-class AppsController < ApplicationController
+class PolestarController < ApplicationController
   def index
-    files = Dir.glob("#{Rails.root}/manifests/hcp3/*")
+    files = Dir.glob("#{Rails.root}/manifests/polestar/*")
     @apps = Array.new
     App.delete_all
 
@@ -10,6 +10,7 @@ class AppsController < ApplicationController
       slop = doc.slop!
 
       filename = file
+      puts "file: " + file
       package = slop.manifest["package"]
       isApp = doc.xpath("//application").size
       hasActivity = doc.xpath("//activity").size,
@@ -29,8 +30,5 @@ class AppsController < ApplicationController
     end
 
     @apps = App.all
-  end
-
-  def read
   end
 end

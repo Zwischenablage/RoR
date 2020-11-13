@@ -8,5 +8,5 @@ for f in $files
 do
 	newFilename=`echo $f | xargs dirname | xargs basename`
 	echo "Moving $f towards $newFilename"
-	cp $f ../$newFilename.xml
+	cp $f $newFilename.xml
 done

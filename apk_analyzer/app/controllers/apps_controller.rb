@@ -9,7 +9,7 @@ class AppsController < ApplicationController
       doc = Nokogiri::XML(inputFile)
       slop = doc.slop!
 
-      filename = file
+      filename = File.basename(file)
       package = slop.manifest["package"]
       isApp = doc.xpath("//application").size
       hasActivity = doc.xpath("//activity").size,

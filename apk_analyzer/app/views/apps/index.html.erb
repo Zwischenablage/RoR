@@ -1,7 +1,5 @@
 <h1><%= link_to 'Apps', apps_index_url %> | <%= link_to 'Polestar', polestar_index_url %> | <%= link_to 'AOSP (GAS)', aosp_gas_index_url %></h1>
 
-
-<div class="">
 <table id="example" class="table table-striped table-bordered" >
   <thead>
     <th>Package</th>
@@ -17,7 +15,7 @@
   <tbody>
    <% @apps.each do |app|%>
    <tr>
-     <td><%= app.package %></td>
+     <td data-toggle="tooltip" data-html="true" title="<b>file:</b><%= app.filename %>" data-placement="left"><%= app.package %></td>
      <td><%= app.hasRO %></td>
      <td><%= app.numOfServices %></td>
      <td><%= app.numOfReceivers %></td>
@@ -30,10 +28,3 @@
    <% end %>
    </tbody>
 </table>
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#example').DataTable();
-  });
-</script>

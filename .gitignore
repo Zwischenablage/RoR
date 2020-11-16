@@ -6,3 +6,4 @@ apk_analyzer/*.lock
 apk_analyzer/log/development.log
 apk_analyzer/test/
 apk_analyzer/public/assets/
+apk_analyzer/public/packs/

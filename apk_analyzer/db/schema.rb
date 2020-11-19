@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_221233) do
+ActiveRecord::Schema.define(version: 2020_11_18_170502) do
 
   create_table "apps", force: :cascade do |t|
     t.string "filename"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2020_11_12_221233) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "hasApplication"
+    t.string "supplier"
+    t.string "usedPermissionsList"
+    t.string "createdPermissionsList"
+    t.string "provdersList"
+    t.string "receiversList"
+    t.string "servicesList"
+    t.string "project"
   end
 
 end

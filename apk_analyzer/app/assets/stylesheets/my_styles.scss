@@ -11,3 +11,17 @@
   margin-right: auto;
   margin-left: 1px;
 }
+
+.tooltip-inner
+{
+  max-width: 600px !important;
+  white-space:pre-wrap;
+}
+
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+}

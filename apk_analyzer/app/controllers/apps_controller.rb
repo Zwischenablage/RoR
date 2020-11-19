@@ -1,8 +1,16 @@
 class AppsController < ApplicationController
-  def index
+  helper_method :numServices
+  helper_method :numReceivers
+  helper_method :numProviders
+  helper_method :getSupplier
+
+  def clean
+    App.delete_all
+  end
+
+  def update
     files = Dir.glob("#{Rails.root}/manifests/hcp3/*")
     @apps = Array.new
-    App.delete_all
 
     files.each do |file|
       inputFile = File.read(file)
@@ -21,16 +29,88 @@ class AppsController < ApplicationController
       createdPermissions = doc.xpath("//permission").size
       bootCompleted = doc.xpath("//uses-permission[@android:name='android.permission.RECEIVE_BOOT_COMPLETED']").size
       persistent = doc.xpath("//application[@android:persistent='true']").size
+      supplier = "AOSP"
+      usedPermissionsList = ""
+      createdPermissionsList = ""
+      servicesList = ""
+      receiversList = ""
+      provdersList = ""
 
-      App.new("filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
+      doc.xpath("//uses-permission/@android:name").each do |node|
+        usedPermissionsList += node.to_s + "
+        "
+      end
+
+      doc.xpath("//permission/@android:name").each do |node|
+        createdPermissionsList += node.to_s + "
+        "
+      end
+
+      doc.xpath("//service/@android:name").each do |node|
+        servicesList += node.to_s + "
+        "
+      end
+
+      doc.xpath("//receiver/@android:name").each do |node|
+        receiversList += node.to_s + "
+        "
+      end
+
+      doc.xpath("//provider/@android:name").each do |node|
+        provdersList += node.to_s + "
+        "
+      end
+
+      App.new("project": "hcp3","filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
         "numOfReceivers": numReceivers, "numOfServices": numServices, "numOfProviders": numProviders,
         "createdPermissions": createdPermissions, "usedPermissions": usedPermissions,
-        "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp).save
+        "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp, "supplier": supplier,
+        "usedPermissionsList": usedPermissionsList, "createdPermissionsList": createdPermissionsList,
+        "servicesList": servicesList, "receiversList": receiversList, "provdersList": provdersList).save
+  end
+end
+
+def index
+  @apps = @apps = App.where(project: "hcp3")
+end
+
+  def numServices(apps)
+    numServices = 0
+    apps.each do |app|
+      numServices += app.servicesList.lines.count
+      puts "app=" + app.package + ", has services:" + app.servicesList.size.to_s
     end
-
-    @apps = App.all
+    puts "Found services:" + numServices.to_s
+    @numServices = numServices
   end
 
-  def read
+  def numReceivers(apps)
+    numReceivers = 0
+    apps.each do |app|
+      numReceivers += app.receiversList.lines.count
+    end
+    @numReceivers = numReceivers
   end
+
+  def numProviders(apps)
+    numProviders = 0
+    apps.each do |app|
+      numProviders += app.provdersList.lines.count
+    end
+    @numProviders = numProviders
+  end
+
+  def getSupplier(packageName)
+    if packageName.downcase.include? "eso"
+      @getSupplier = "eso"
+    elsif packageName.downcase.include? "cerence"
+      @getSupplier = "eso"
+    elsif packageName.downcase.include? "harman"
+      @getSupplier = "HAD"
+    else
+      @getSupplier = "AOSP"
+    end
+  end
+
+
 end

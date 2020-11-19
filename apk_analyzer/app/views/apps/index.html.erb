@@ -1,5 +1,4 @@
-<h1><%= link_to 'Apps', apps_index_url %> | <%= link_to 'Polestar', polestar_index_url %> | <%= link_to 'AOSP (GAS)', aosp_gas_index_url %></h1>
-
+<%= render "shared/header" %>
 <b>Number of apps:</b> <%= @apps.where(project: "hcp3").size %>
 <br>
 <br>
@@ -28,11 +27,10 @@
      <td data-toggle="tooltip" title="<%= app.provdersList %>" data-placement="left"><%= app.numOfProviders %></td>
      <td data-toggle="tooltip" title="<%= app.usedPermissionsList %>" data-placement="left"><%= app.usedPermissions %></td>
      <td data-toggle="tooltip" title="<%= app.createdPermissionsList %>" data-placement="left"><%= app.createdPermissions %></td>
-     <td><%= app.bootCompleted %></td>
-     <td><%= app.persistent %></td>
+     <td id="<%= app.bootCompleted? ? "redcell" : "" %>"><%= app.bootCompleted %></td>
+     <td id="<%= app.persistent? ? "orangecell" : "" %>"><%= app.persistent %></td>
      <td><%= getSupplier(app.package) %>
      <td><%= app.deployment %></td>
-    </td>
    </tr>
    <% end %>
    </tbody>

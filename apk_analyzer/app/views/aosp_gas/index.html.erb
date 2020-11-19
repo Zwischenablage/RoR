@@ -1,6 +1,6 @@
-<h1><%= link_to 'Apps', apps_index_url %> | <%= link_to 'Polestar', polestar_index_url %> | <%= link_to 'AOSP (GAS)', aosp_gas_index_url %></h1>
+<%= render "shared/header" %>
 
-<b>Number of apps:</b> <%= @apps.where(project: "aosp").size %>
+<b>Number of apps:</b> <%= @apps.where(project: "aosp_gas").size %>
 <br>
 <br>
 
@@ -9,13 +9,13 @@
   <thead>
     <th id="package">Package</th>
     <th id="RO">RO</th>
-    <th id="services">Services (<%= numServices(@apps.where(project: "aosp")) %>)</th>
-    <th id="receivers">Receivers (<%= numReceivers(@apps.where(project: "aosp")) %>)</th>
-    <th id="providers">Providers (<%= numProviders(@apps.where(project: "aosp")) %>)</th>
+    <th id="services">Services (<%= numServices(@apps.where(project: "aosp_gas")) %>)</th>
+    <th id="receivers">Receivers (<%= numReceivers(@apps.where(project: "aosp_gas")) %>)</th>
+    <th id="providers">Providers (<%= numProviders(@apps.where(project: "aosp_gas")) %>)</th>
     <th id="permissions">used permissions</th>
     <th id="permissions">created permissions</th>
-    <th id="BOOT_COMPLETED">BOOT_COMPLETED (<%= @apps.where(project: "aosp").where(bootCompleted: true).size %>)</th>
-    <th id="persistent">Persistent (<%= @apps.where(project: "aosp").where(persistent: true).size %>)</th>
+    <th id="BOOT_COMPLETED">BOOT_COMPLETED (<%= @apps.where(project: "aosp_gas").where(bootCompleted: true).size %>)</th>
+    <th id="persistent">Persistent (<%= @apps.where(project: "aosp_gas").where(persistent: true).size %>)</th>
   </thead>
   <tbody>
    <% @apps.each do |app|%>
@@ -27,8 +27,8 @@
      <td><%= app.numOfProviders %></td>
      <td><%= app.usedPermissions %></td>
      <td><%= app.createdPermissions %></td>
-     <td><%= app.bootCompleted %></td>
-     <td><%= app.persistent %></td>
+     <td id="<%= app.bootCompleted? ? "redcell" : "" %>"><%= app.bootCompleted %></td>
+     <td id="<%= app.persistent? ? "orangecell" : "" %>"><%= app.persistent %></td>
    </tr>
    <% end %>
    </tbody>

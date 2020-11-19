@@ -81,6 +81,22 @@ td {
   color:white;
 }
 
+.even td#redcell{
+  background-color: #c33434;
+}
+
+.odd td#redcell{
+  background-color: #ca4343;
+}
+
+.odd td#orangecell {
+  background-color: #d28646;
+}
+
+.even td#orangecell {
+  background-color: #d67828;
+}
+
 #example tr:hover {
 	background-color: #5a5f69;
 }

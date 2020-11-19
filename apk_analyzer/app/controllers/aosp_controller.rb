@@ -1,33 +1,21 @@
-class AppsController < ApplicationController
+class AospController < ApplicationController
+
   helper_method :numServices
   helper_method :numReceivers
   helper_method :numProviders
-  helper_method :getSupplier
-
-  def clean
-    App.delete_all
-  end
 
   def update
-    files = Dir.glob("#{Rails.root}/manifests/hcp3/**/AndroidManifest.xml")
+    files = Dir.glob("#{Rails.root}/manifests/aosp/*")
     @apps = Array.new
-    puts files
 
     files.each do |file|
+
+            puts "parsing : " + file
       inputFile = File.read(file)
       doc = Nokogiri::XML(inputFile)
       slop = doc.slop!
 
-      basepath = file.split("/apps/")[1].split("/")
-      if basepath[1].include? "app"
-        deployment = basepath[0] + "/" + basepath[1]
-      elsif basepath[2].include? "app"
-        deployment = basepath[0] + "/" + basepath[1]+ "/" + basepath[2]
-      else
-        deployment = basepath[0] + "/" + basepath[1]+ "/" + basepath[2]
-      end
-
-      filename = file.split("/apps/")[1]
+      filename = File.basename(file)
       package = slop.manifest["package"]
       isApp = doc.xpath("//application").size
       hasActivity = doc.xpath("//activity").size,
@@ -74,18 +62,18 @@ class AppsController < ApplicationController
         "
       end
 
-      App.new("project": "hcp3","filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
+      App.new("project": "aosp", "filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
         "numOfReceivers": numReceivers, "numOfServices": numServices, "numOfProviders": numProviders,
         "createdPermissions": createdPermissions, "usedPermissions": usedPermissions,
         "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp, "supplier": supplier,
         "usedPermissionsList": usedPermissionsList, "createdPermissionsList": createdPermissionsList,
-        "servicesList": servicesList, "receiversList": receiversList, "provdersList": provdersList, "deployment": deployment).save
+        "servicesList": servicesList, "receiversList": receiversList, "provdersList": provdersList).save
+    end
   end
-end
 
-def index
-  @apps = App.where(project: "hcp3")
-end
+  def index
+    @apps = App.where(project: "aosp")
+  end
 
   def numServices(apps)
     numServices = 0
@@ -112,20 +100,5 @@ end
     end
     @numProviders = numProviders
   end
-
-  def getSupplier(packageName)
-    if packageName.downcase.include? "eso"
-      @getSupplier = "eso"
-    elsif packageName.downcase.include? "cerence"
-      @getSupplier = "eso"
-    elsif packageName.downcase.include? "vwgroup"
-      @getSupplier = "eso"
-    elsif packageName.downcase.include? "harman"
-      @getSupplier = "HAD"
-    else
-      @getSupplier = "AOSP"
-    end
-  end
-
 
 end

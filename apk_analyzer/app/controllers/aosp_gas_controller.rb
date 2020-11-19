@@ -59,7 +59,7 @@ class AospGasController < ApplicationController
         "
       end
 
-      App.new("project": "aosp", "filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
+      App.new("project": "aosp_gas", "filename": filename, "package": package, "hasActivity": hasActivity, "hasRO": hasOverlay,
         "numOfReceivers": numReceivers, "numOfServices": numServices, "numOfProviders": numProviders,
         "createdPermissions": createdPermissions, "usedPermissions": usedPermissions,
         "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp, "supplier": supplier,
@@ -69,7 +69,7 @@ class AospGasController < ApplicationController
   end
 
   def index
-    @apps = @apps = App.where(project: "aosp")
+    @apps = App.where(project: "aosp_gas")
   end
 
   def numServices(apps)

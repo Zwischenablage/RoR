@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'aosp/index'
+  get 'aosp/update'
   get 'aosp_gas/index'
   get 'aosp_gas/update'
   get 'polestar/index'

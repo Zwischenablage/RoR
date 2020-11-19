@@ -31,6 +31,9 @@ class AospGasController < ApplicationController
       receiversList = ""
       provdersList = ""
 
+      #skip overlay apks
+      next if hasOverlay > 0
+
       doc.xpath("//uses-permission/@android:name").each do |node|
         usedPermissionsList += node.to_s + "
         "

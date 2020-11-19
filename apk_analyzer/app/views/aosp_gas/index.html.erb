@@ -7,15 +7,15 @@
 <div class="">
 <table id="example" class="table table-striped table-bordered" >
   <thead>
-    <th>Package</th>
-    <th>RO</th>
-    <th>Services (<%= numServices(@apps.where(project: "aosp")) %>)</th>
-    <th>Receivers (<%= numReceivers(@apps.where(project: "aosp")) %>)</th>
-    <th>Providers (<%= numProviders(@apps.where(project: "aosp")) %>)</th>
-    <th>used permissions</th>
-    <th>created permissions</th>
-    <th>RECEIVE_BOOT_COMPLETED (<%= @apps.where(project: "aosp").where(bootCompleted: true).size %>)</th>
-    <th>Persistent (<%= @apps.where(project: "aosp").where(persistent: true).size %>)</th>
+    <th id="package">Package</th>
+    <th id="RO">RO</th>
+    <th id="services">Services (<%= numServices(@apps.where(project: "aosp")) %>)</th>
+    <th id="receivers">Receivers (<%= numReceivers(@apps.where(project: "aosp")) %>)</th>
+    <th id="providers">Providers (<%= numProviders(@apps.where(project: "aosp")) %>)</th>
+    <th id="permissions">used permissions</th>
+    <th id="permissions">created permissions</th>
+    <th id="BOOT_COMPLETED">BOOT_COMPLETED (<%= @apps.where(project: "aosp").where(bootCompleted: true).size %>)</th>
+    <th id="persistent">Persistent (<%= @apps.where(project: "aosp").where(persistent: true).size %>)</th>
   </thead>
   <tbody>
    <% @apps.each do |app|%>

@@ -25,3 +25,92 @@ th {
   z-index: 2;
   background-color: white;
 }
+
+.table th, .table td {
+    padding: 0.05rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    width: 500px;
+    overflow: hidden;
+}
+
+#package {
+  width:300px;
+}
+#RO {
+  width:50px;
+}
+#services {
+  width:120px;
+}
+#receivers {
+  width:120px;
+}
+#providers {
+  width:120px;
+}
+#permissions {
+  width:140px;
+}
+#BOOT_COMPLETED {
+  width:180px;
+}
+#persistent {
+  width:150px;
+}
+#supplier {
+  width:80px;
+}
+#deployment {
+  width:180px;
+}
+
+body
+{
+  font-size: 13px;
+  background-color: #393b40;
+  color: white;
+}
+
+
+table {
+  table-layout: fixed;
+  background-color: #424750;
+}
+td {
+  color:white;
+}
+
+#example tr:hover {
+	background-color: #5a5f69;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #424750;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #3b4048;
+}
+.table-bordered td {
+    border: 0px solid #dee2e6;
+}
+.table-bordered {
+    border: 0px solid #dee2e6;
+}
+
+a {
+    color: #00ffdd;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+h1, .h1 {
+    font-size: 2.5rem;
+    font-weight: 200;
+}

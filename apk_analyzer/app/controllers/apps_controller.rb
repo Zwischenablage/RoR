@@ -9,15 +9,25 @@ class AppsController < ApplicationController
   end
 
   def update
-    files = Dir.glob("#{Rails.root}/manifests/hcp3/*")
+    files = Dir.glob("#{Rails.root}/manifests/hcp3/**/AndroidManifest.xml")
     @apps = Array.new
+    puts files
 
     files.each do |file|
       inputFile = File.read(file)
       doc = Nokogiri::XML(inputFile)
       slop = doc.slop!
 
-      filename = File.basename(file)
+      basepath = file.split("/apps/")[1].split("/")
+      if basepath[1].include? "app"
+        deployment = basepath[0] + "/" + basepath[1]
+      elsif basepath[2].include? "app"
+        deployment = basepath[0] + "/" + basepath[1]+ "/" + basepath[2]
+      else
+        deployment = basepath[0] + "/" + basepath[1]+ "/" + basepath[2]
+      end
+
+      filename = file.split("/apps/")[1]
       package = slop.manifest["package"]
       isApp = doc.xpath("//application").size
       hasActivity = doc.xpath("//activity").size,
@@ -35,6 +45,9 @@ class AppsController < ApplicationController
       servicesList = ""
       receiversList = ""
       provdersList = ""
+
+      #skip overlay apks
+      next if hasOverlay > 0
 
       doc.xpath("//uses-permission/@android:name").each do |node|
         usedPermissionsList += node.to_s + "
@@ -66,7 +79,7 @@ class AppsController < ApplicationController
         "createdPermissions": createdPermissions, "usedPermissions": usedPermissions,
         "bootCompleted": bootCompleted, "persistent": persistent, "hasApplication": isApp, "supplier": supplier,
         "usedPermissionsList": usedPermissionsList, "createdPermissionsList": createdPermissionsList,
-        "servicesList": servicesList, "receiversList": receiversList, "provdersList": provdersList).save
+        "servicesList": servicesList, "receiversList": receiversList, "provdersList": provdersList, "deployment": deployment).save
   end
 end
 
@@ -104,6 +117,8 @@ end
     if packageName.downcase.include? "eso"
       @getSupplier = "eso"
     elsif packageName.downcase.include? "cerence"
+      @getSupplier = "eso"
+    elsif packageName.downcase.include? "vwgroup"
       @getSupplier = "eso"
     elsif packageName.downcase.include? "harman"
       @getSupplier = "HAD"

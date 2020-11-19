@@ -13,7 +13,7 @@ require("bootstrap")
 import $ from 'jquery';
 global.$ = jQuery;
 //import "stylesheets/application";
-import 'bootstrap/dist/css/bootstrap';
+//import 'bootstrap/dist/css/bootstrap';
 
 $(document).on('turbolinks:load', function() {
   $('body').tooltip({

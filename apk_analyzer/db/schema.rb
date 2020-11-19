@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_170502) do
+ActiveRecord::Schema.define(version: 2020_11_19_124152) do
 
   create_table "apps", force: :cascade do |t|
     t.string "filename"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_18_170502) do
     t.string "receiversList"
     t.string "servicesList"
     t.string "project"
+    t.string "deployment"
   end
 
 end
